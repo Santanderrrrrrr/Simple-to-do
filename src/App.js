@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import './App.css';
 import Form from './components/Form'
@@ -12,14 +12,7 @@ function App() {
 
     const [taskHolder, setTaskHolder] = useState([])
     const [isCompleted, setIsCompleted] = useState(null)
-    const [psHolder, setPsHolder] = useState([])
-    
-    useEffect(()=>{
-
-    }, )
-  
-  
-  
+      
   
   
   return (
@@ -28,9 +21,9 @@ function App() {
         <header className="mt-8">
           <h1 > To Do: </h1>
         </header>
-        <Form taskHolder={taskHolder} setTaskHolder={setTaskHolder} isCompleted={isCompleted} setIsCompleted={setIsCompleted} psHolder={psHolder} setPsHolder={setPsHolder}/>
+        <Form taskHolder={taskHolder} setTaskHolder={setTaskHolder} setIsCompleted={setIsCompleted}/>
       </div>
-      <ToDoList taskHolder={taskHolder} setTaskHolder={setTaskHolder} isCompleted={isCompleted} psHolder={psHolder} setPsHolder={setPsHolder}/>
+      <ToDoList taskHolder={taskHolder} setTaskHolder={setTaskHolder} isCompleted={isCompleted}/>
         
     </div>
   );

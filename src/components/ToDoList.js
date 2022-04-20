@@ -7,7 +7,6 @@ const ToDoList = ({taskHolder, setTaskHolder, isCompleted}) => {
 
 
     const onDeleteHandler = (param)=>{
-        
         const taskas = (taskHolder.filter((task)=>(task._id !== param._id)))
         setTaskHolder(taskas)
     }

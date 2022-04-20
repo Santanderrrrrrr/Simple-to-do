@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const Form = ({taskHolder, setTaskHolder, setIsCompleted, isCompleted}) => {
+const Form = ({taskHolder, setTaskHolder, setIsCompleted}) => {
     const [ inputText, setInputText] = useState("");
 
    
@@ -11,8 +11,7 @@ const Form = ({taskHolder, setTaskHolder, setIsCompleted, isCompleted}) => {
             ...taskHolder, {title: inputText, _id:taskHolder.length+1, completed: false}
         ]);
         
-        console.log(taskHolder)
-        console.log(isCompleted)
+        
         setInputText("");
     }
 
