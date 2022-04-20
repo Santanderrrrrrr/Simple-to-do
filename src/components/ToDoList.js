@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ToDoList = ({taskHolder, setTaskHolder, isCompleted, psHolder, setPsHolder}) => {
+const ToDoList = ({taskHolder, setTaskHolder, isCompleted}) => {
 
     
     
@@ -12,10 +12,10 @@ const ToDoList = ({taskHolder, setTaskHolder, isCompleted, psHolder, setPsHolder
         setTaskHolder(taskas)
     }
 
-    const onCompleteHandler = (itinerant)=>{
+    const onCompleteHandler = (iterant)=>{
         setTaskHolder(taskHolder.map((task)=>{
 
-            if(task._id === itinerant._id){ 
+            if(task._id === iterant._id){ 
                 return {
                     ...task, completed:!task.completed
                 }
@@ -32,39 +32,6 @@ const ToDoList = ({taskHolder, setTaskHolder, isCompleted, psHolder, setPsHolder
         </div>)
     
     
-    if (isCompleted==="all") return (
-        <div className="d-flex flex-column align-items-center">
-            <div className="card w-75 d-flex flex-column align-items-center">  
-
-                <div className="mb-4">
-                    <h4>What needs to be done: </h4>
-                </div>
-                <table className="table w-75">
-                    <thead> 
-                        <tr>
-                            <th >Title</th>
-                            <th >ID</th>
-                            <th ></th>
-                            <th ></th>
-                            <th ></th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        {taskHolder.map((t)=>(
-                            <tr key={taskHolder.indexOf(t)}>
-                                <td className={t.completed? "completed": ''}>{t.title}</td>
-                                <td>{t._id}</td>                        
-                                <td><button onClick={e=>onCompleteHandler(t)} className="btn btn-success"><i className="fas fa-check"></i></button></td>
-                                <td><button onClick={e=>onDeleteHandler(t)} className="btn btn-danger"><i className="fas fa-trash"></i></button></td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-                </div>
-
-        </div>
-    )
     return (
         <div className="d-flex flex-column align-items-center">
             <div className="card w-75 d-flex flex-column align-items-center">  
@@ -84,15 +51,14 @@ const ToDoList = ({taskHolder, setTaskHolder, isCompleted, psHolder, setPsHolder
                     </thead>
 
                     <tbody>
-                        {isCompleted==="completed"?taskHolder.filter(task=>task.completed===true).map((t)=>(
+                        {isCompleted===null?taskHolder.map((t)=>(
                             <tr key={taskHolder.indexOf(t)}>
                                 <td className={t.completed? "completed": ''}>{t.title}</td>
                                 <td>{t._id}</td>                        
                                 <td><button onClick={e=>onCompleteHandler(t)} className="btn btn-success"><i className="fas fa-check"></i></button></td>
                                 <td><button onClick={e=>onDeleteHandler(t)} className="btn btn-danger"><i className="fas fa-trash"></i></button></td>
                             </tr>
-                        )):
-                        taskHolder.filter(task=>task.completed===false).map((t)=>(
+                        )):taskHolder.filter(task => task.completed===isCompleted).map((t)=>(
                             <tr key={taskHolder.indexOf(t)}>
                                 <td className={t.completed? "completed": ''}>{t.title}</td>
                                 <td>{t._id}</td>                        
@@ -102,11 +68,11 @@ const ToDoList = ({taskHolder, setTaskHolder, isCompleted, psHolder, setPsHolder
                         ))}
                     </tbody>
                 </table>
-            </div>
+                </div>
 
         </div>
-
     )
+    
 }
 
 export default ToDoList

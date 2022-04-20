@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const Form = ({taskHolder, setTaskHolder, setIsCompleted}) => {
+const Form = ({taskHolder, setTaskHolder, setIsCompleted, isCompleted}) => {
     const [ inputText, setInputText] = useState("");
 
    
@@ -10,11 +10,27 @@ const Form = ({taskHolder, setTaskHolder, setIsCompleted}) => {
         setTaskHolder([
             ...taskHolder, {title: inputText, _id:taskHolder.length+1, completed: false}
         ]);
+        
+        console.log(taskHolder)
+        console.log(isCompleted)
         setInputText("");
     }
 
     const isCompletedHandler = (e)=>{
-        setIsCompleted(e.target.value)
+        
+        switch (e.target.value) {
+            case "completed":
+                setIsCompleted(true)
+                break;
+            case "incomplete":
+                setIsCompleted(false)
+                break;       
+            case "all":
+                setIsCompleted(null)
+                break;
+            default:
+                break;
+        }
     }
     
 
@@ -28,7 +44,7 @@ const Form = ({taskHolder, setTaskHolder, setIsCompleted}) => {
                 <select onChange={isCompletedHandler} name="todos" className="filter-todo">
                     <option value="all">All</option>
                     <option value="completed">Completed</option>
-                    <option value="uncompleted">Uncompleted</option>
+                    <option value="incomplete">Incomplete</option>
                 </select>
             </div>
         </form>
