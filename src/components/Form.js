@@ -17,20 +17,8 @@ const Form = ({taskHolder, setTaskHolder, setIsCompleted, isCompleted}) => {
     }
 
     const isCompletedHandler = (e)=>{
+        setIsCompleted(JSON.parse(e.target.value))
         
-        switch (e.target.value) {
-            case "completed":
-                setIsCompleted(true)
-                break;
-            case "incomplete":
-                setIsCompleted(false)
-                break;       
-            case "all":
-                setIsCompleted(null)
-                break;
-            default:
-                break;
-        }
     }
     
 
@@ -42,9 +30,9 @@ const Form = ({taskHolder, setTaskHolder, setIsCompleted, isCompleted}) => {
             </button>
             <div className="select">
                 <select onChange={isCompletedHandler} name="todos" className="filter-todo">
-                    <option value="all">All</option>
-                    <option value="completed">Completed</option>
-                    <option value="incomplete">Incomplete</option>
+                    <option value="null">All</option>
+                    <option value="true">Completed</option>
+                    <option value="false">Incomplete</option>
                 </select>
             </div>
         </form>

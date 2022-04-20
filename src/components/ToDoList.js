@@ -51,14 +51,7 @@ const ToDoList = ({taskHolder, setTaskHolder, isCompleted}) => {
                     </thead>
 
                     <tbody>
-                        {isCompleted===null?taskHolder.map((t)=>(
-                            <tr key={taskHolder.indexOf(t)}>
-                                <td className={t.completed? "completed": ''}>{t.title}</td>
-                                <td>{t._id}</td>                        
-                                <td><button onClick={e=>onCompleteHandler(t)} className="btn btn-success"><i className="fas fa-check"></i></button></td>
-                                <td><button onClick={e=>onDeleteHandler(t)} className="btn btn-danger"><i className="fas fa-trash"></i></button></td>
-                            </tr>
-                        )):taskHolder.filter(task => task.completed===isCompleted).map((t)=>(
+                        {(isCompleted===null?taskHolder:taskHolder.filter(task => task.completed===isCompleted)).map((t)=>(
                             <tr key={taskHolder.indexOf(t)}>
                                 <td className={t.completed? "completed": ''}>{t.title}</td>
                                 <td>{t._id}</td>                        
